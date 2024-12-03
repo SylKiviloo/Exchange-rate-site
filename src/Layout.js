@@ -12,14 +12,14 @@ const Layout = (props) => {
       </div>
       <footer className="p-3 bg-light">
         <div className="mb-2">
-          <a className="badge badge-dark" href="https://github.com/Altcademy/exchange-rate-site" target="_blank">GitHub</a>
+          <a className="badge bg-dark text-decoration-none" href="https://github.com/Altcademy/exchange-rate-site" target="_blank">GitHub</a>
         </div>
         <div>
-          <span className="mr-3 text-secondary">Built by <a href="https://www.altcademy.com" target="_blank">Altcademy</a> with ☕ and 💜</span>
+          <span className="mr-3 text-secondary">Built by <a href="https://www.altcademy.com" target="_blank" className="text-decoration-none">Altcademy</a> with ☕ and 💜</span>
         </div>
       </footer>
     </React.Fragment>
   );
 }
 
-export default Layout;
+export default Layout; 
