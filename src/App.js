@@ -4,6 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Layout from './Layout';
 import Home from './Home';
+//import CurrencyConverter from './CurrencyConverter';
 import './App.css';
 
 const App = () => {
