@@ -27,4 +27,4 @@ const CurrencyTable = (props) => {
   )
 }
 
-export default CurrencyTable
+export default CurrencyTable;

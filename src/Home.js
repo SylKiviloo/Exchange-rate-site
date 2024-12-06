@@ -11,7 +11,7 @@ class Home extends React.Component {
     this.state = {  //initial state
       base: 'USD',
       rates: null,
-      loading: true,
+      loading: true, //loading state to disable select element while fetch is processing
     }
   } 
 
@@ -27,17 +27,19 @@ class Home extends React.Component {
 
   //function to fetch and store the data
   getRatesData = (base) => {
+    this.setState({ loading: true }); //
     fetch(`https://api.frankfurter.app/latest?from=${base}`)
       .then(checkStatus) //see if response is ok
-      .then(json)
+      .then(json) //convert to usable format - an object but not an array yet
       .then(data => {
         if (data.error) {
           throw new Error(data.error);
         }
 
-        console.log(data); //check for data object (replace this with code below)
+        console.log(data); //check for data object (for testing) - it is there
 
-        //restructure data to an array of objects in order to map and use it
+        //restructure data to an array of objects in order to map and use it - not working properly
+
         const rates = Object.keys(data.rates) //define new rates variable as the keys of the Object (ie. the acronyms)
         .filter(acronym => acronym !== base) //and filter out current base currency acronym from table, return an array
         .map(acronym => ({ //then map 
@@ -46,20 +48,20 @@ class Home extends React.Component {
           name: currencies[acronym].name,
           symbol: currencies[acronym].symbol,
         }))
-        this.setState({ rates: data.rates });
+        this.setState({ rates, loading: false }); //then set the state when loading has finished
       })
-      .catch(error => console.error(error.message));
+      .catch(error => console.error(error.message)); //log error msg if data doesn't come through
   }
 
   render () {
-    const { base, rates } = this.state;
+    const { base, rates, loading } = this.state;
 
     return (
       <React.Fragment>
         <form className="p-3 bg-light form-inline justify-content-center">
           <h3 className="mb-2">Base currency: <b className="mr-2">1</b></h3>
 
-          <select value={base} onChange={this.changeBase} className="form-control form-control-lg mb-2">
+          <select value={base} onChange={this.changeBase} className="form-control form-control-lg mb-2" disabled={loading}>
           {Object.keys(currencies).map(currencyAcronym => <option key={currencyAcronym} value={currencyAcronym}>{currencyAcronym}</option>)}
           </select>
 

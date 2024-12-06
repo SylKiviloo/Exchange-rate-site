@@ -7,9 +7,9 @@ import Home from './Home';
 //import CurrencyConverter from './CurrencyConverter';
 import './App.css';
 
-const NotFound = () => {
-  <h2>404 Not Found</h2>;
-}
+//const NotFound = () => {
+  //<h2>404 Not Found</h2>;
+//}
 
 const App = () => {
   return ( 
