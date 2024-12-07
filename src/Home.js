@@ -36,13 +36,13 @@ class Home extends React.Component {
           throw new Error(data.error);
         }
 
-        console.log(data); //check for data object (for testing) - it is there
+        console.log(data); //check for data object (for testing)
 
-        //restructure data to an array of objects in order to map and use it - not working properly
+        //restructure data to an array of objects in order to map and use it
 
         const rates = Object.keys(data.rates) //define new rates variable as the keys of the Object (ie. the acronyms)
         .filter(acronym => acronym !== base) //and filter out current base currency acronym from table, return an array
-        .map(acronym => ({ //then map 
+        .map(acronym => ({ //then map it
           acronym,
           rate: data.rates[acronym],
           name: currencies[acronym].name,
@@ -58,7 +58,7 @@ class Home extends React.Component {
 
     return (
       <React.Fragment>
-        <form className="p-3 bg-light form-inline justify-content-center">
+        <form className="p-3 bg-info form-inline justify-content-center">
           <h3 className="mb-2">Base currency: <b className="mr-2">1</b></h3>
 
           <select value={base} onChange={this.changeBase} className="form-control form-control-lg mb-2" disabled={loading}>
