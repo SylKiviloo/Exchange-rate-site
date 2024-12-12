@@ -1,6 +1,6 @@
 // CurrencyTable.js
 import React from 'react';
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CurrencyTable = (props) => {
   const { base, rates } = props; //define base and rates as the props
@@ -19,7 +19,7 @@ const CurrencyTable = (props) => {
         {rates.map(currency =>  //needs rates to be an array in order to load app
           <tr key={currency.acronym}>
             <td className="pl-4 py-2">{currency.name} <small>({currency.acronym})</small></td>
-            <td className="text-right pr-4 py-2">{currency.rate.toFixed(2)}</td> {/* error with .toFixed(6) */}  
+            <td className="text-right pr-4 py-2"><Link to={`/currencyconverter?base=${base}&quote=${currency.acronym}`}>{currency.rate.toFixed(6)}</Link></td> {/* make currency.rate.toFixed(6) into a link */}
           </tr>
         )}
       </tbody>

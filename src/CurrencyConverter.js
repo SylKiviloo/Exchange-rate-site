@@ -5,12 +5,18 @@ import { checkStatus, json } from './utils/fetchUtils';
 class CurrencyConverter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { //initial state using arbitrary values for testing without data
-      rate: 109.55,
-      baseAcronym: 'USD',
-      baseValue: 1,
-      quoteAcronym: 'JPY',
-      quoteValue: 1 * 109.55,
+
+    //console.log(props.location.search); //check for search params (string) in CurrencyConverter
+    const params = new URLSearchParams(props.location.search); //use URLSearchParams instead, to convert string to object
+    console.log(params.get('base'), params.get('quote')); //use get method to check params
+    
+
+    this.state = { //initial state using arbitrary values for testing without data...then adjust to recieving data
+      //rate: 109.55,
+      baseAcronym: params.get('base') || 'USD', //use USD and JPY as defaults if base and quote are unavailable
+      baseValue: 0,
+      quoteAcronym: params.get('quote') || 'JPY',
+      quoteValue: 0, //1 * 109.55,
       loading: false, //temporarily false as we don't have data yet
     };
   }
